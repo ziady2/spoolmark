@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "subcue"
+version = "0.12.1"
+description = "Subtitle processing toolkit – parse, analyse and convert SRT, VTT and ASS caption files"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Ziad Yasser", email = "yziad845@gmail.com" }]
+requires-python = ">=3.9"
+keywords = ["subtitle", "srt", "vtt", "ass", "caption", "timing", "cps"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+  "Environment :: Console",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build==1.2.2.post1",
+  "pytest==8.3.3",
+  "pytest-cov==5.0.0",
+  "ruff==0.6.9",
+]
+
+[project.scripts]
+subcue = "subcue.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ziady2/spoolmark"
+Documentation = "https://github.com/ziady2/spoolmark#readme"
+Repository = "https://github.com/ziady2/spoolmark"
+Issues = "https://github.com/ziady2/spoolmark/issues"
+Changelog = "https://github.com/ziady2/spoolmark/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+subcue = ["py.typed"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = ["-ra"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501", "E731"]

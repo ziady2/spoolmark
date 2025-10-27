@@ -1,0 +1,23 @@
+{
+  "name": "JSON Track",
+  "cues": [
+    {
+      "index": 1,
+      "start": 1.0,
+      "end": 4.0,
+      "text": "Hello from JSON!"
+    },
+    {
+      "index": 2,
+      "start": 5.5,
+      "end": 8.2,
+      "text": "Second cue."
+    },
+    {
+      "index": 3,
+      "start": 10.0,
+      "end": 13.5,
+      "text": "Third cue."
+    }
+  ]
+}

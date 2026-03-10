@@ -1,0 +1,17 @@
+# Dependency-only environment; the task platform mounts the repository at /app.
+FROM python:3.12-slim
+
+ENV PYTHONPATH=/app/src \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+RUN python -m pip install --no-cache-dir \
+        pip==24.2 \
+        setuptools==80.9.0 \
+        wheel==0.44.0 \
+        build==1.2.2.post1 \
+        pytest==8.3.3 \
+        pytest-cov==5.0.0 \
+        ruff==0.6.9

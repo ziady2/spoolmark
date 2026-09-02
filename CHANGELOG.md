@@ -2,92 +2,122 @@
 
 All notable changes to **subcue** are documented here.
 
-## [0.12.0] — 2026-08-28
+## [0.12.1] - 2026-09-02
 
 ### Added
-- `report_density`: subtitle density analysis over time intervals.
-- `reconcile` module for track comparison and merging.
-- `--top` flag on all report subcommands.
 
-### Fixed
-- ASS parser handles multi-line dialogue with `\N` correctly.
-- SVG timeline rendering for very short cues.
-
-## [0.11.0] — 2026-07-10
-
-### Added
-- `report_conformance` with Netflix/broadcast presets.
-- `dedup` module for duplicate cue detection.
-- `presets` module with industry-standard configs.
+- High-level file I/O with content detection, encoding fallback, ASS export,
+  atomic writes, and round trips for all supported subtitle formats.
+- Batch importing with ordered per-file success and error records, aggregate
+  statistics, and batch validation.
+- Diagnostic checks with configurable limits, issue summaries, and health
+  scoring.
+- Composable cue queries, tooltips, accessibility helpers, text normalisation,
+  auto-segmentation, timeline analysis, character mapping, and line wrapping.
+- Complete API, CLI, presets, formats, reports, architecture, and tutorial
+  documentation.
 
 ### Changed
-- Reports now copy lists instead of returning references.
 
-## [0.10.0] — 2026-05-15
+- CLI commands now execute real import, conversion, analysis, shifting,
+  merging, concatenation, and validation workflows.
+- Track transformations consistently return new tracks without mutating their
+  inputs.
+- Timing offsets are consistently measured in seconds.
 
-### Added
-- `report_styles`: style usage analysis for ASS tracks.
-- `report_sync`: sync validation combining gap/overlap checks.
-- `search` module with regex support.
+### Fixed
 
-## [0.9.0] — 2026-03-20
+- Merge, split, shift, transform, and reconciliation helpers no longer discard
+  results from the immutable-style Track API.
+- Timeline density and coverage do not double-count overlapping cue intervals.
+- Invalid interval, step, and segmentation limits fail immediately instead of
+  risking non-terminating loops.
+- Domain errors are constructed with their required context.
+- Percentile, percentage, line wrapping, duration formatting, and query state
+  edge cases now return correct results.
+- Embedded newlines round-trip through the plain-text subtitle format.
 
-### Added
-- `split` module for splitting tracks by speaker, time, or gap.
-- `merge` module for combining multiple tracks.
-- `interpolation` and `binning` utilities.
-
-## [0.8.0] — 2026-01-25
-
-### Added
-- Full SVG timeline and chart rendering.
-- Theme system with light/dark presets.
-- `formatter` module for timecode display formatting.
-
-## [0.7.0] — 2025-11-10
+## [0.12.0] - 2026-08-28
 
 ### Added
-- `report_readspeed` with configurable CPS thresholds.
-- `report_duration` with bucket distribution.
-- `report_speakers` with dialogue turn tracking.
 
-## [0.6.0] — 2025-09-05
+- `report_density`: subtitle density analysis over time intervals.
+- `reconcile` module for track comparison and merging.
+- `--top` support for list-shaped CLI report output.
 
-### Added
-- `report_timing`, `report_cps`, `report_overlap`, `report_gaps`.
-- `report_words` with character and word frequency.
+### Fixed
 
-## [0.5.0] — 2025-07-12
+- ASS parsing handles multi-line dialogue markers correctly.
+- SVG timeline rendering handles very short cues.
 
-### Added
-- HTML cue list renderer.
-- ASCII timeline and table renderer.
-- CSV and JSON export modules.
-
-## [0.4.0] — 2025-05-18
+## [0.11.0] - 2026-07-10
 
 ### Added
-- ASS/SSA parser with style extraction.
-- Plain-text subtitle parser.
-- JSON subtitle format support.
 
-## [0.3.0] — 2025-03-22
+- `report_conformance` with Netflix, broadcast, and web presets.
+- `dedup` module for duplicate cue detection.
+- Industry-oriented configuration presets.
 
-### Added
-- WebVTT parser and exporter.
-- Speaker extraction from cue text.
-- Dialogue model and turn analysis.
-
-## [0.2.0] — 2025-01-15
+## [0.10.0] - 2026-05-15
 
 ### Added
-- `Cue`, `Track`, `Style`, `Speaker` core models.
-- SRT parser and exporter.
-- `timing` module with timecode parsing.
 
-## [0.1.0] — 2024-10-01
+- Style-usage and sync-validation reports.
+- Text and regular-expression search.
+
+## [0.9.0] - 2026-03-20
 
 ### Added
-- Initial project setup.
-- `version.py`, `errors.py`, basic `pyproject.toml`.
-- pytest configuration and CI workflow.
+
+- Track splitting and merging.
+- Interpolation and binning utilities.
+
+## [0.8.0] - 2026-01-25
+
+### Added
+
+- SVG timelines and charts.
+- Theme and display-formatting helpers.
+
+## [0.7.0] - 2025-11-10
+
+### Added
+
+- Reading-speed, duration, and speaker reports.
+
+## [0.6.0] - 2025-09-05
+
+### Added
+
+- Timing, CPS, overlap, gap, and word reports.
+
+## [0.5.0] - 2025-07-12
+
+### Added
+
+- HTML, ASCII, CSV, and JSON output helpers.
+
+## [0.4.0] - 2025-05-18
+
+### Added
+
+- ASS/SSA, plain-text, and JSON parsing.
+
+## [0.3.0] - 2025-03-22
+
+### Added
+
+- WebVTT parsing/export and speaker/dialogue utilities.
+
+## [0.2.0] - 2025-01-15
+
+### Added
+
+- Core Cue, Track, Style, and Speaker models.
+- SRT parsing/export and timecode utilities.
+
+## [0.1.0] - 2024-10-01
+
+### Added
+
+- Initial package, error hierarchy, configuration, and test setup.

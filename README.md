@@ -33,6 +33,12 @@ subcue shift 2.5 movie.srt
 
 # export as WebVTT
 subcue export -f vtt -o movie.vtt
+
+# validate against Netflix guidelines
+subcue validate movie.srt
+
+# merge multiple files
+subcue merge english.srt french.srt
 ```
 
 ## Installation

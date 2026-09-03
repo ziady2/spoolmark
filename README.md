@@ -69,9 +69,69 @@ pip install -e ".[dev]"
 ## Running Tests
 
 ```bash
+# Quick test run
 pytest -q
-pytest --cov=subcue
+
+# With coverage report
+pytest --cov=subcue --cov-report=term-missing
+
+# Specific test module
+pytest tests/test_cue.py -v
+
+# Via Makefile
 make test
+
+# Via tox (multi-version)
+tox
+```
+
+## Python API Examples
+
+### Parse and analyse
+
+```python
+from subcue.srt_import import parse_srt_file
+from subcue.report_cps import cps_per_cue
+from subcue.report_summary import full_summary
+
+track = parse_srt_file("movie.srt")
+print(f"Loaded {len(track)} cues")
+
+# CPS analysis
+for row in cps_per_cue(track):
+    if row.get("cps", 0) > 25:
+        print(f"  Cue {row['index']}: {row['cps']:.1f} CPS - too fast!")
+
+# Full summary with quality score
+summary = full_summary(track)
+print(f"Quality: {summary['quality']['score']}/100")
+```
+
+### Search and filter
+
+```python
+from subcue.query import Query
+
+# Find cues from a speaker with duration > 3s
+long_narrator = (Query(track)
+    .where_speaker("NARRATOR")
+    .where_min_duration(3.0)
+    .sort_by("duration", reverse=True)
+    .execute())
+
+# Text search
+from subcue.search import search_cues
+matches = search_cues(track, "hello")
+```
+
+### Diagnostics
+
+```python
+from subcue.diagnostic import run_diagnostics, health_score
+
+issues = run_diagnostics(track, max_cps=20)
+score = health_score(track)
+print(f"Score: {score['score']}/100 ({score['total_issues']} issues)")
 ```
 
 ## License
